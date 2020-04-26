@@ -49,15 +49,27 @@ RSpec.describe 'fnmatch' do
   end
 
   context 'with File::FNM_PATHNAME' do
-    it "doesn't match / in square brackets when there are other values" do
+    it "doesn't match / in square brackets when there are other values aaa" do
       expect(::File.fnmatch?('a[a/]a', 'aaa', ::File::FNM_PATHNAME)).to be true
+    end
+
+    it "doesn't match / in square brackets when there are other values a/a" do
       expect(::File.fnmatch?('a[a/]a', 'a/a', ::File::FNM_PATHNAME)).to be false
+    end
+
+    it "doesn't match / in square brackets when there are other values aba" do
       expect(::File.fnmatch?('a[a/]a', 'aba', ::File::FNM_PATHNAME)).to be false
     end
 
-    it "doesn't match / in square brackets when there are other values and it's the first value" do
+    it "doesn't match / in square brackets when there are other values and it's the first value aaa" do
       expect(::File.fnmatch?('a[/a]a', 'aaa', ::File::FNM_PATHNAME)).to be true
+    end
+
+    it "doesn't match / in square brackets when there are other values and it's the first value a/a" do
       expect(::File.fnmatch?('a[/a]a', 'a/a', ::File::FNM_PATHNAME)).to be false
+    end
+
+    it "doesn't match / in square brackets when there are other values and it's the first value aba" do
       expect(::File.fnmatch?('a[/a]a', 'aba', ::File::FNM_PATHNAME)).to be false
     end
 
